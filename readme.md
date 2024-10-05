@@ -101,7 +101,7 @@ For Custom SMTP Server:
     "username": "your_custom_username",
     "password": "your_custom_password"
 }
-``
+```
 
 Response:
 

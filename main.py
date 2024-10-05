@@ -106,7 +106,7 @@ def send_mail():
         username = request.json.get('username')
         password = request.json.get('password')
         if username is None or password is None or smtp_server is None or port is None or username == '' or password == '' or smtp_server == '' or port == '':
-            return 'Missing Parameters', 400
+            return 'Missing Parameters or wrong API Key', 400
 
     if not isinstance(port, int):
         port = int(port)

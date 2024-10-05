@@ -55,7 +55,7 @@ The request must contain the following JSON fields:
 	•	subject: (Required) The subject of the email.
 	•	plain_body: (Optional) The plain-text body of the email.
 	•	fancy_body: (Optional) The HTML-formatted body of the email.
-	•	html: (Optional) Boolean value. Set to true if sending HTML-formatted email.
+	•	is_html: (Optional) Boolean value. Set to true if sending HTML-formatted email.
 	•	api_key: (Required) The API key for authentication.
 	•	agent: (Optional) The SMTP agent to use (either gmail, ahasend, or other). Defaults to gmail if not provided.
 	•	sender_name: (Required) The sender’s display name (e.g., “John Doe”).
@@ -69,29 +69,30 @@ If the agent is set to other, the following additional fields are required:
 
 Example Request:
 
-For Gmail:
+For Ahasend:
 
+```
 {
-    "from": "your_email@gmail.com",
-    "to": "recipient@example.com",
-    "subject": "Hello",
-    "plain_body": "This is a plain text email",
-    "fancy_body": "<h1>This is a fancy HTML email</h1>",
-    "html": true,
-    "api_key": "your_api_key",
-    "agent": "gmail",
-    "sender_name": "Your Name"
+    "from": "raunit@codingkaro.in",
+    "to": "raunitpcs@gmail.com",
+    "subject": "Testing API",
+    "plain_body": "Hi from my api",
+    "is_html": false,
+    "api_key": "follow-me-on-twitter-@iraunit",
+    "sender_name": "Raunit Verma",
+    "agent": "ahasend"
 }
+```
 
 For Custom SMTP Server:
-
+```
 {
     "from": "custom_email@example.com",
     "to": "recipient@example.com",
     "subject": "Custom Server Email",
     "plain_body": "Plain email",
     "fancy_body": "<b>Fancy HTML email</b>",
-    "html": true,
+    "is_html": true,
     "api_key": "your_api_key",
     "agent": "other",
     "sender_name": "Custom Sender",
@@ -100,6 +101,7 @@ For Custom SMTP Server:
     "username": "your_custom_username",
     "password": "your_custom_password"
 }
+``
 
 Response:
 

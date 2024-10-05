@@ -11,4 +11,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 EXPOSE 5005
 
-CMD ["python", "app.py"]
+CMD ["gunicorn", "-b", "0.0.0.0:5005", "app:app"]

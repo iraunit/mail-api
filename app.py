@@ -9,8 +9,9 @@ from email.mime.text import MIMEText
 from flask import Flask
 from flask import request
 
-app = Flask(__name__)
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
+app = Flask(__name__)
 
 API_KEY = os.environ.get("API_KEY")
 GMAIL_USERNAME = os.environ.get("GMAIL_USERNAME")

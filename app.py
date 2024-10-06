@@ -84,7 +84,7 @@ def send_mail():
     subject = request.json.get('subject')
     plain_body = request.json.get('plain_body')
     fancy_body = request.json.get('fancy_body')
-    is_html = request.json.get('html')
+    is_html = request.json.get('is_html')
     api_key = request.json.get('api_key')
     agent = request.json.get('agent')
     sender_name = request.json.get('sender_name')

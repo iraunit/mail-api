@@ -11,4 +11,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 EXPOSE 5005
 
-CMD ["gunicorn", "--workers", "4", "--log-level", "debug", "-b", "0.0.0.0:5005", "app:app"]
+CMD ["gunicorn", "--log-level", "debug", "-b", "0.0.0.0:5005", "app:app"]

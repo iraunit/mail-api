@@ -107,7 +107,7 @@ def send_mail():
         username = request.json.get('username')
         password = request.json.get('password')
         if username is None or password is None or smtp_server is None or port is None or username == '' or password == '' or smtp_server == '' or port == '':
-            logger.info(f"{username} {password} {smtp_server} {from_email} {to_email} {subject} {api_key} {agent}")
+            print(username, password, smtp_server, from_email, to_email, subject, api_key, agent, port, sep=", ")
             return 'Missing Parameters or wrong API Key', 400
 
     if not isinstance(port, int):
@@ -115,7 +115,7 @@ def send_mail():
 
     if from_email is None or to_email is None or subject is None or sender_name is None or (
             plain_body is None and fancy_body is None):
-        logger.info(f"{username} {password} {smtp_server} {from_email} {to_email} {subject} {api_key} {agent}")
+        print(username, password, smtp_server, from_email, to_email, subject, api_key, agent,port, sep=", ")
         return f'Missing Parameters is from_email {from_email} to_email {to_email} subject {subject} sender_name {sender_name}', 400
     else:
         if is_html:

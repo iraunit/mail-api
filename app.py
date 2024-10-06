@@ -100,7 +100,11 @@ def send_mail():
         username = AHA_USERNAME
         password = AHA_PASSWORD
 
-    if agent == 'other' or api_key != API_KEY:
+    if api_key != API_KEY:
+        print(username, password, smtp_server, from_email, to_email, subject, api_key, agent, sep=", ")
+        return 'Wrong API Key', 400
+
+    if agent == 'other':
         smtp_server = request.json.get('smtp_server')
         port = request.json.get('port')
         username = request.json.get('username')

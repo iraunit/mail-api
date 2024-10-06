@@ -79,7 +79,6 @@ def hello_world():
 
 @app.route('/send', methods=['POST'])
 def send_mail():
-    logger.debug(request.json, request.method, request.headers, request.remote_addr, request.url)
     from_email = request.json.get('from')
     to_email = request.json.get('to')
     subject = request.json.get('subject')

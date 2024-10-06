@@ -114,6 +114,7 @@ def send_mail():
 
     if from_email is None or to_email is None or subject is None or sender_name is None or (
             plain_body is None and fancy_body is None):
+        logger.info("{} {} {} {} {} {} {} {} {}".format(username, password, smtp_server, port, from_email, to_email, subject, api_key, agent))
         return f'Missing Parameters is from_email {from_email} to_email {to_email} subject {subject} sender_name {sender_name}', 400
     else:
         if is_html:

@@ -101,25 +101,53 @@ def send_mail():
         password = AHA_PASSWORD
 
     if api_key != API_KEY:
-        print(username, password, smtp_server, from_email, to_email, subject, api_key, agent, sep=", ")
+        print("Wrong API Key", api_key, sep=", ")
         return 'Wrong API Key', 400
 
     if agent == 'other':
+        print("other agent", agent, sep=", ")
         smtp_server = request.json.get('smtp_server')
         port = request.json.get('port')
         username = request.json.get('username')
         password = request.json.get('password')
-        if username is None or password is None or smtp_server is None or port is None or username == '' or password == '' or smtp_server == '' or port == '':
-            print(username, password, smtp_server, from_email, to_email, subject, api_key, agent, port, sep=", ")
-            return 'Missing Parameters or wrong API Key', 400
+        if not smtp_server or smtp_server == '':
+            print("missing smtp server",smtp_server, sep=", ")
+            return 'Missing smtp server', 400
+        if not port or port == '':
+            print("missing port", port, sep=", ")
+            return 'Missing port', 400
+        if not username or username == '':
+            print("missing username", username, sep=", ")
+            return 'Missing username', 400
+        if not password or password == '':
+            print("missing password", password, sep=", ")
+            return 'Missing password', 400
 
     if not isinstance(port, int):
         port = int(port)
 
-    if from_email is None or to_email is None or subject is None or sender_name is None or (
-            plain_body is None and fancy_body is None):
-        print(username, password, smtp_server, from_email, to_email, subject, api_key, agent,port, sep=", ")
-        return f'Missing Parameters is from_email {from_email} to_email {to_email} subject {subject} sender_name {sender_name}', 400
+    if from_email is None or from_email == '':
+        print("missing from email", from_email, sep=", ")
+        return 'Missing from email', 400
+    elif to_email is None or to_email == '':
+        print("missing to email", to_email, sep=", ")
+        return 'Missing to email', 400
+    elif subject is None or subject == '':
+        print("missing subject", subject, sep=", ")
+        return 'Missing subject', 400
+
+    if sender_name is None or sender_name == '':
+        print("missing sender name", sender_name, sep=", ")
+        return 'Missing sender name', 400
+
+    if is_html is None:
+        print("missing is_html", is_html, sep=", ")
+        return 'Missing is_html', 400
+
+    if (is_html and (not fancy_body or fancy_body == '')) or (not is_html and (not plain_body or plain_body == '')):
+        print("missing body", plain_body, fancy_body, sep=", ")
+        return 'Missing body', 400
+
     else:
         if is_html:
             res = send_fancy_email(smtp_server, port, username, password, from_email, to_email, subject, plain_body,

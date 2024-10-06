@@ -106,6 +106,7 @@ def send_mail():
         username = request.json.get('username')
         password = request.json.get('password')
         if username is None or password is None or smtp_server is None or port is None or username == '' or password == '' or smtp_server == '' or port == '':
+            logger.info("{} {} {} {} {} {} {} {} {}".format(username, password, smtp_server, port, from_email, to_email, subject, api_key, agent))
             return 'Missing Parameters or wrong API Key', 400
 
     if not isinstance(port, int):
@@ -116,13 +117,15 @@ def send_mail():
         return f'Missing Parameters is from_email {from_email} to_email {to_email} subject {subject} sender_name {sender_name}', 400
     else:
         if is_html:
-            res = send_fancy_email(smtp_server, port, username, password, from_email, to_email, subject, plain_body,fancy_body,sender_name)
+            res = send_fancy_email(smtp_server, port, username, password, from_email, to_email, subject, plain_body,
+                                   fancy_body, sender_name)
             if res:
                 return 'Success', 200
             else:
                 return 'Failed', 500
         else:
-            res = send_plain_email(smtp_server, port, username, password, from_email, to_email, subject,plain_body,sender_name)
+            res = send_plain_email(smtp_server, port, username, password, from_email, to_email, subject, plain_body,
+                                   sender_name)
             if res:
                 return 'Success', 200
             else:

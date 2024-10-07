@@ -100,7 +100,7 @@ def send_mail():
         username = AHA_USERNAME
         password = AHA_PASSWORD
 
-    if api_key != API_KEY:
+    if api_key != API_KEY and agent!='other':
         print("Wrong API Key", api_key, sep=", ")
         return 'Wrong API Key', 400
 

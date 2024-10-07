@@ -7,9 +7,6 @@ WORKDIR /app
 
 COPY . .
 
-ARG API_KEY
-ENV API_KEY=$API_KEY
-
 RUN pip install --no-cache-dir -r requirements.txt
 
 EXPOSE 5005
